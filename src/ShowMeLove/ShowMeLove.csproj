@@ -127,6 +127,28 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShowMeLove.Business.Managers\ShowMeLove.Business.Managers.csproj">
+      <Project>{2bf11850-38ef-4f35-b8cb-48f39fdbce84}</Project>
+      <Name>ShowMeLove.Business.Managers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShowMeLove.Data.AzureStorage\ShowMeLove.Data.AzureStorage.csproj">
+      <Project>{98056d5c-1038-4dc6-8465-89ca93ba76ae}</Project>
+      <Name>ShowMeLove.Data.AzureStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShowMeLove.Data.Fakes\ShowMeLove.Data.Fakes.csproj">
+      <Project>{9ac1dd7b-da1c-499c-84ab-a4a27e4ee2b2}</Project>
+      <Name>ShowMeLove.Data.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShowMeLove.Data.Identity\ShowMeLove.Data.Identity.csproj">
+      <Project>{1c9ecb2f-b7b0-4db0-974a-3c75cbd8a2c2}</Project>
+      <Name>ShowMeLove.Data.Identity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShowMeLove.Domain.Core\ShowMeLove.Domain.Core.csproj">
+      <Project>{d9738abe-da22-4569-b7b4-684523860f15}</Project>
+      <Name>ShowMeLove.Domain.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
