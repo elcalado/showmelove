@@ -149,6 +149,10 @@
       <Project>{d9738abe-da22-4569-b7b4-684523860f15}</Project>
       <Name>ShowMeLove.Domain.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ShowMyLove.Data.EventHub\ShowMyLove.Data.EventHub.csproj">
+      <Project>{4d2ef340-fa10-4ce3-8a2c-0fbb33947b9b}</Project>
+      <Name>ShowMyLove.Data.EventHub</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

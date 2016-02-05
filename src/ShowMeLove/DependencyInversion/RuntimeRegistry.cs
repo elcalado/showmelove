@@ -16,7 +16,7 @@ namespace ShowMeLove.DependencyInversion
 
                 // From the data layer
                 x.Assembly("ShowMeLove.Data.AzureStorage");
-                x.Assembly("ShowMeLove.Data.EventHub");
+                x.Assembly("ShowMyLove.Data.EventHub"); // yup, spelling error
                 x.Assembly("ShowMeLove.Data.Identity");
                 x.Assembly("ShowMeLove.Data.Fakes");
 

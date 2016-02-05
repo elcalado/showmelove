@@ -30,7 +30,7 @@ namespace ShowMeLove
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = new MainPageViewModel();
+            DataContext = App.DependencyResolver.GetInstance<MainPageViewModel>();
             await (DataContext as MainPageViewModel).InitializeAsync();
         }
     }

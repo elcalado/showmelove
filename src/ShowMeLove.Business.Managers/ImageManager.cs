@@ -8,7 +8,6 @@ namespace ShowMeLove.Business.Managers
 {
     public class ImageManager : IImageManager
     {
-        private object idManager;
         private readonly IUserIdManager _userIdManager;
         private readonly IImageCapture _imageCapture;
         private readonly IImageRepository _imageRepository;
@@ -47,6 +46,15 @@ namespace ShowMeLove.Business.Managers
 
             // When the image is uploaded, send a message on the event hub with the ID and blob name
             await _messageTransmitter.TransmitImageSavedAsync(userId, blobName);
+
+            return true;
+        }
+
+        public async Task<bool> InitializeAsync()
+        {
+            var idManagerOk = await _userIdManager.InitializeAsync();
+
+            if (!idManagerOk) return false;
 
             return true;
         }

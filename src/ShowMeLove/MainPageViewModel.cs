@@ -1,17 +1,25 @@
-﻿using System;
+﻿using ShowMeLove.Domain.Core.Contracts.Managers;
+using System;
 using System.Threading.Tasks;
 
 namespace ShowMeLove
 {
     internal class MainPageViewModel
     {
-        public MainPageViewModel()
+        private readonly IImageManager _imageManager;
+
+        public MainPageViewModel(IImageManager imageManager)
         {
+            _imageManager = imageManager;
         }
 
-        internal Task InitializeAsync()
+
+        public async Task InitializeAsync()
         {
-            throw new NotImplementedException();
+            var result = await _imageManager.InitializeAsync();
+
+            if (!result)
+                throw new InvalidProgramException("Failed to initialize. oh crap!");
         }
     }
 }

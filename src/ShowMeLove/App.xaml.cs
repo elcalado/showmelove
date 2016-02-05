@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ShowMeLove.DependencyInversion;
+using StructureMap;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +24,8 @@ namespace ShowMeLove
     /// </summary>
     sealed partial class App : Application
     {
+        private static Container _container = new Container(new RuntimeRegistry()); 
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,6 +34,11 @@ namespace ShowMeLove
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        public static Container DependencyResolver
+        {
+            get { return _container; }
         }
 
         /// <summary>
