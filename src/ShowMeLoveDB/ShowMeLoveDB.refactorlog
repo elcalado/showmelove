@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f8f43ad0-3fee-41c9-ae36-d286cf9cd0ef" ChangeDateTime="02/05/2016 21:37:19">
+    <Property Name="ElementName" Value="[dbo].[Eval].[sh]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Eval]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="capturetime" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6c989031-b56b-441c-9398-28629450de99" ChangeDateTime="02/05/2016 21:49:01">
+    <Property Name="ElementName" Value="[dbo].[Eval].[hapiness]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Eval]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="happiness" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7d4a2425-1249-464e-b3ed-4ff515dd1c1e" ChangeDateTime="02/05/2016 21:57:51">
+    <Property Name="ElementName" Value="[dbo].[Session].[speaker]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Session]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="speakerid" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7c134745-9302-405d-af90-e4ba14f390dc" ChangeDateTime="02/05/2016 21:58:20">
+    <Property Name="ElementName" Value="[dbo].[Eval].[session]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Eval]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="sessionid" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b4cfaa04-deca-4139-bf5b-ec2a6ef4cd9f" ChangeDateTime="02/05/2016 21:58:23">
+    <Property Name="ElementName" Value="[dbo].[Eval].[attendee]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Eval]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="attendeeid" />
+  </Operation>
+</Operations>

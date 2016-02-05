@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowMyLove.Data.EventHub", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{69ABE5EB-8663-4117-89B2-D0828A5EC747}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShowMeLoveDB", "..\..\ShowMeLove\ShowMeLoveDB\ShowMeLoveDB\ShowMeLoveDB.sqlproj", "{FDC04689-74C3-4F79-A4A0-3C6A3B5D53A5}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShowMeLoveDB", "ShowMeLoveDB\ShowMeLoveDB.sqlproj", "{FDC04689-74C3-4F79-A4A0-3C6A3B5D53A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
