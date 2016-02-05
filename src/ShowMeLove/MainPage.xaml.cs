@@ -25,6 +25,13 @@ namespace ShowMeLove
         public MainPage()
         {
             this.InitializeComponent();
+            Loaded += MainPage_Loaded;
+        }
+
+        private async void MainPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            DataContext = new MainPageViewModel();
+            await (DataContext as MainPageViewModel).InitializeAsync();
         }
     }
 }
