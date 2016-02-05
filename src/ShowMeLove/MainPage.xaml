@@ -7,7 +7,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <StackPanel Background="Pink">
+        <TextBlock Text="Show My Love" FontSize="48" />
 
-    </Grid>
+        <MediaElement />
+        
+        
+    </StackPanel>
 </Page>
