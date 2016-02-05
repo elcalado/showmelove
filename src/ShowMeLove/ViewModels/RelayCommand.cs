@@ -26,7 +26,7 @@ namespace ShowMeLove.ViewModels
 
         public void Execute(object parameter)
         {
-            _action.invoke();
+            _action.Invoke();
         }
     }
 }
