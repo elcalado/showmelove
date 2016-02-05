@@ -13,7 +13,7 @@ namespace ShowMeLove.Data.AzureStorage
 
         public ImageRepository()
         {
-            var connectionString = "";
+            var connectionString = "DefaultEndpointsProtocol=https;AccountName=showmelove;AccountKey=a6OrMwyImPsWdg6eoJvspaM1foqYtE4sPZIr4dpWk2BoFrfhANqYGOz6jQf/UYzfHZE9djfqMdXzCDBLA05bZQ==;";
             var cloudStorageaccount = CloudStorageAccount.Parse(connectionString);
             _blobClient = cloudStorageaccount.CreateCloudBlobClient();
         }

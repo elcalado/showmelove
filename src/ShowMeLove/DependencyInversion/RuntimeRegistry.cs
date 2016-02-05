@@ -1,5 +1,6 @@
 ﻿using ShowMeLove.Business.Managers;
 using ShowMeLove.Data.Identity;
+using ShowMeLove.Domain.Core.Contracts.Repositories;
 using StructureMap;
 
 namespace ShowMeLove.DependencyInversion
@@ -8,6 +9,8 @@ namespace ShowMeLove.DependencyInversion
     {
         public RuntimeRegistry()
         {
+            For<IImageCapture>().Use<ImageCapture>();
+
             Scan(x =>
             {
 
@@ -22,6 +25,7 @@ namespace ShowMeLove.DependencyInversion
 
                 x.WithDefaultConventions();
             });
+
         }
     }
 }

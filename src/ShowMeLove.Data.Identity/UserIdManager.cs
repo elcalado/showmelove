@@ -8,27 +8,27 @@ namespace ShowMeLove.Data.Identity
 {
     public class UserIdManager : IUserIdManager
     {
-        static string tenant             = "showmelove.onmicrosoft.com"; 
-        static string clientId           = "[Enter client ID as obtained from Azure Portal, e.g. 82692da5-a86f-44c9-9d53-2f88d52b478b]"; 
-        static string aadInstance        = "https://login.microsoftonline.com/{0}";
-        static string authority          = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
-        static string someShitResourceId = "";
+        static string tenant = "showmelove.onmicrosoft.com";
+        static string clientId = "b9852d74-58b3-440b-a097-548dfba43f74 ";
+        static string aadInstance = "https://login.microsoftonline.com/{0}";
+        static string authority = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
+        static string resourceId = "https://graph.windows.net/";
 
 
         private AuthenticationResult _authenticationResult;
+        private string _userId;
 
-        public UserIdManager()
-        {
-
-        }
-
+        
         public async Task<bool> InitializeAsync()
         {
             var redirectUri = Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
             var authContext = new AuthenticationContext(authority);
-            Uri noUri = null;
+            Uri callbackUri = new Uri("http://showmylove.azurewebsites.net");
 
-            _authenticationResult = await authContext.AcquireTokenAsync(someShitResourceId, clientId, noUri, null);
+            var platformParameters = new PlatformParameters(PromptBehavior.Auto, false);
+
+
+            _authenticationResult = await authContext.AcquireTokenAsync(resourceId, clientId, callbackUri, platformParameters);
 
             if (_authenticationResult == null)
                 return false;
@@ -37,10 +37,12 @@ namespace ShowMeLove.Data.Identity
 
         }
 
-        
 
         public Task<string> GetAsync()
         {
+            if (_authenticationResult == null)
+                return Task.FromResult<string>(string.Empty);
+
             return Task.FromResult<string>(_authenticationResult.UserInfo.UniqueId);
         }
     }
