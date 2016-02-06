@@ -1,5 +1,3 @@
-Function DeployDB {
-
 param( 
     [string]$sqlserver = $( throw "Missing required parameter sqlserver"), 
     [string]$dacpac = $( throw "Missing required parameter dacpac"), 
@@ -27,5 +25,3 @@ $dacsvcs.Deploy($dp, $dbname, $true)
 
 # clean up event 
 unregister-event -source "msg" 
-
-}
