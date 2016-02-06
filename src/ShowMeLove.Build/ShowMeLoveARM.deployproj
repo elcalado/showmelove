@@ -49,6 +49,7 @@
     <Content Include="Templates\KeyVault.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Templates\AppService.json" />
     <None Include="Templates\SQLDB.json" />
     <Content Include="Tools\Microsoft.ServiceBus.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

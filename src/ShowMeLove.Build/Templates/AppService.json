@@ -1,0 +1,52 @@
+﻿{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+  
+        
+
+    },
+  "variables": {
+    "ShowMeLoveWebName": "ShowMeLoveWeb",
+    "plnShowMeLoveWorkerSize": 0,
+    "plnShowMeLoveSKU": "Standard",
+    "plnShowMeLoveName":  "plnShowMeLove"
+  },
+    "resources": [
+        {
+            "name": "[variables('plnShowMeLoveName')]",
+            "type": "Microsoft.Web/serverfarms",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2014-06-01",
+            "dependsOn": [ ],
+            "tags": {
+                "displayName": "plnShowMeLove"
+            },
+          "properties": {
+            "name": "[variables('plnShowMeLoveName')]",
+            "sku": "[variables('plnShowMeLoveSKU')]",
+            "workerSize": "[variables('plnShowMeLoveWorkerSize')]",
+            "numberOfWorkers": 1
+          }
+        },
+        {
+            "name": "[variables('ShowMeLoveWebName')]",
+            "type": "Microsoft.Web/sites",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-08-01",
+          "dependsOn": [
+            "[concat('Microsoft.Web/serverfarms/', variables('plnShowMeLoveName'))]"
+          ],
+          "tags": {
+            "[concat('hidden-related:', resourceGroup().id, '/providers/Microsoft.Web/serverfarms/', variables('plnShowMeLoveName'))]": "Resource",
+            "displayName": "ShowMeLoveWeb"
+          },
+          "properties": {
+            "name": "[variables('ShowMeLoveWebName')]",
+            "serverFarmId": "[resourceId('Microsoft.Web/serverfarms/', variables('plnShowMeLoveName'))]"
+          }
+        }
+    ],
+    "outputs": {
+    }
+}
