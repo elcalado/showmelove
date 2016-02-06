@@ -15,8 +15,9 @@ namespace ShowMeLove.Data.Imaging
             var captureDevice = new MediaCapture();
 
             await captureDevice.InitializeAsync();
-            var bitmap      = new WriteableBitmap(0,0);
+
             var imageFormat = ImageEncodingProperties.CreateJpeg();
+            var bitmap      = new WriteableBitmap(400,300);
 
             using (var memoryStream = new InMemoryRandomAccessStream())
             {

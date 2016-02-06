@@ -6,19 +6,20 @@ using Microsoft.ProjectOxford.Emotion.Contract;
 using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Net.Http;
 
 namespace ShowMeLove.Data.Http
 {
     public class OxfordClient : IOxfordClient
     {
+        private static HttpClient _httpClient = new HttpClient();
         private const string OxfordClientSubscriptionKey = "5df0154542ef485abe98bd10347cecd0";
         private readonly EmotionServiceClient _emotionServiceClient;
 
 
         public OxfordClient()
         {
-            _emotionServiceClient = new EmotionServiceClient(OxfordClientSubscriptionKey);
-
+            _emotionServiceClient = new EmotionServiceClient(_httpClient, OxfordClientSubscriptionKey);
         }
 
 

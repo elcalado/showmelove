@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Linq;
 
 
 namespace ShowMeLove.ViewModels
@@ -102,7 +103,8 @@ namespace ShowMeLove.ViewModels
                 _isRunning = true;
                 LastImage = await _imageManager.GetBitmapAsync();
 
-                
+                // Send it to Oxford
+                var sentiments = await _imageManager.GetSentimentsAsync(LastImage);
             }
             else
             {
