@@ -5,6 +5,18 @@ using System.Runtime.Serialization;
 namespace ShowMeLove.Domain.Core.Entities
 {
     [DataContract]
+    public class ProfileResult
+    {
+        [DataMember]
+        [JsonProperty("age")]
+        public int Age { get; set; }
+
+        [DataMember]
+        [JsonProperty("gender")]
+        public string Gender { get; set; }
+    }
+
+        [DataContract]
     public class SentimentResult
     {
         [DataMember]
