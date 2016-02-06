@@ -17,7 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>ShowMeLove_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>2C3DEE6B62B148A7224A82FEE9C7A52D0EC66255</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>C5FF6473DFD8ABFAB8035314BFF08005DBDD5994</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -120,7 +120,7 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
-    <Content Include="ShowMeLove_TemporaryKey.pfx" />
+    <None Include="ShowMeLove_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
