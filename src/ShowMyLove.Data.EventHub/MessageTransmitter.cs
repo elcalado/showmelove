@@ -17,7 +17,6 @@ namespace ShowMyLove.Data.EventHub
             _eventHubClient = EventHubClient.CreateFromConnectionString(eventHubConnectionstring, "showlove");
         }
 
-
         public async Task TransmitImageSavedAsync(SentimentResult result)
         {
             var serialized = JsonConvert.SerializeObject(result);
