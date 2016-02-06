@@ -49,6 +49,9 @@
     <Content Include="Scripts\CreateEventHub.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Templates\KeyVault.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Templates\SQLDB.json" />
   </ItemGroup>
   <ItemGroup>
