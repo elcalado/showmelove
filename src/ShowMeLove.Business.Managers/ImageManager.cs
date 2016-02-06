@@ -3,6 +3,8 @@ using ShowMeLove.Domain.Core.Contracts.Managers;
 using ShowMeLove.Domain.Core.Contracts.Repositories;
 using ShowMeLove.Domain.Core.Entities;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media.Imaging;
+using System.IO;
 
 namespace ShowMeLove.Business.Managers
 {
@@ -16,9 +18,9 @@ namespace ShowMeLove.Business.Managers
 
         public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository, IImageCapture imageCapture, IMessageTransmitter messageTransmitter)
         {
-            _userIdManager      = userIdManager;
-            _imageRepository    = imageRepository;
-            _imageCapture       = imageCapture;
+            _userIdManager = userIdManager;
+            _imageRepository = imageRepository;
+            _imageCapture = imageCapture;
             _messageTransmitter = messageTransmitter;
         }
 
@@ -33,22 +35,20 @@ namespace ShowMeLove.Business.Managers
             // Create BLOB name
             var blobName = userId.ToString() + Guid.NewGuid().ToString();
 
-            // Capture image
-            byte[] imageBytes = _imageCapture.CaptureJpegImage();
-
             // Upload the image
-            var blobUrl = await _imageRepository.SaveAsync(imageBytes, blobName);
 
-            var imageUploadNotification = new ImageUploadNotification{
-                UserId = userId, 
-                BlobUrl = blobUrl
-            };
+            //var imageUploadNotification = new ImageUploadNotification
+            //{
+            //    UserId = userId,
+            //    BlobUrl = blobUrl
+            //};
 
-            // When the image is uploaded, send a message on the event hub with the ID and blob name
-            await _messageTransmitter.TransmitImageSavedAsync(userId, blobName);
+            //// When the image is uploaded, send a message on the event hub with the ID and blob name
+            //await _messageTransmitter.TransmitImageSavedAsync(userId, blobName);
 
             return true;
         }
+
 
         public async Task<bool> InitializeAsync()
         {
@@ -56,7 +56,31 @@ namespace ShowMeLove.Business.Managers
 
             if (!idManagerOk) return false;
 
+            var image = _imageCapture.CaptureJpegImageAsync();
+
             return true;
         }
+
+        public async Task<BitmapImage> GetBitmapAsync()
+        {
+            return await GetImageFromWebCam();
+        }
+
+
+        private  async Task<BitmapImage> GetImageFromWebCam()
+        {
+            var imageStream = await _imageCapture.CaptureJpegImageAsync();
+
+            if (imageStream == null)
+                return null;
+
+            var bitmapImage = new BitmapImage();
+
+            await bitmapImage.SetSourceAsync(imageStream);
+
+            return bitmapImage;
+            
+        }
+
     }
 }

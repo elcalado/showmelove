@@ -8,11 +8,11 @@ namespace ShowMeLove.Data.Identity
 {
     public class UserIdManager : IUserIdManager
     {
-        static string tenant = "showmelove.onmicrosoft.com";
-        static string clientId = "b9852d74-58b3-440b-a097-548dfba43f74 ";
+        static string tenant      = "showmelove.onmicrosoft.com";
+        static string clientId    = "b9852d74-58b3-440b-a097-548dfba43f74 ";
         static string aadInstance = "https://login.microsoftonline.com/{0}";
-        static string authority = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
-        static string resourceId = "https://graph.windows.net/";
+        static string authority   = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
+        static string resourceId  = "https://graph.windows.net/";
 
 
         private AuthenticationResult _authenticationResult;
@@ -26,7 +26,6 @@ namespace ShowMeLove.Data.Identity
             Uri callbackUri = new Uri("http://showmylove.azurewebsites.net");
 
             var platformParameters = new PlatformParameters(PromptBehavior.Auto, false);
-
 
             _authenticationResult = await authContext.AcquireTokenAsync(resourceId, clientId, callbackUri, platformParameters);
 

@@ -1,7 +1,10 @@
-﻿namespace ShowMeLove.Domain.Core.Contracts.Repositories
+﻿using System.Threading.Tasks;
+using Windows.Storage.Streams;
+
+namespace ShowMeLove.Domain.Core.Contracts.Repositories
 {
     public interface IImageCapture
     {
-        byte[] CaptureJpegImage();
+        Task<InMemoryRandomAccessStream> CaptureJpegImageAsync();
     }
 }

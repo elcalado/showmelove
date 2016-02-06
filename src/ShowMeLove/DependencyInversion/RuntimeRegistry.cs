@@ -9,8 +9,6 @@ namespace ShowMeLove.DependencyInversion
     {
         public RuntimeRegistry()
         {
-            For<IImageCapture>().Use<ImageCapture>();
-
             Scan(x =>
             {
 
@@ -21,6 +19,7 @@ namespace ShowMeLove.DependencyInversion
                 x.Assembly("ShowMeLove.Data.AzureStorage");
                 x.Assembly("ShowMyLove.Data.EventHub"); // yup, spelling error
                 x.Assembly("ShowMeLove.Data.Identity");
+                x.Assembly("ShowMeLove.Data.Imaging");
                 x.Assembly("ShowMeLove.Data.Fakes");
 
                 x.WithDefaultConventions();
