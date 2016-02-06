@@ -29,9 +29,6 @@ namespace ShowMeLove.Data.Http
 
         public async Task<IEnumerable<SentimentResult>> GetSentimentsFromImageAsync(Stream imageStream)
         {
-            // var fileStream = await Task.Run( ()  => File.OpenRead(@"C:\Users\pedias\OneDrive\Bilder\1997\Bilde05.jpg"));
-
-            var faceSomething = await _faceServiceClient.DetectAsync(imageStream, false, true);
             var emotions      = await _emotionServiceClient.RecognizeAsync(imageStream);
 
             return ConvertEmotionsToSentimentResults(emotions);
