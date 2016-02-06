@@ -17,5 +17,9 @@ namespace ShowMeLove.Domain.Core.Contracts.Managers
         Task<IEnumerable<SentimentResult>> GetSentimentsAsync(WriteableBitmap bitmap);
 
         Task TransmitSentimentsAsync(IEnumerable<SentimentResult> sentiments);
+
+        Task<IEnumerable<ProfileResult>> GetProfileAsync(WriteableBitmap bitmap);
+
+
     }
 }

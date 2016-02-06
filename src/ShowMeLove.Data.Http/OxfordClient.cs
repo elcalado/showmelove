@@ -29,11 +29,30 @@ namespace ShowMeLove.Data.Http
 
         public async Task<IEnumerable<SentimentResult>> GetSentimentsFromImageAsync(Stream imageStream)
         {
-            var emotions      = await _emotionServiceClient.RecognizeAsync(imageStream);
-
+            var emotions      = await _emotionServiceClient.RecognizeAsync(imageStream);   
             return ConvertEmotionsToSentimentResults(emotions);
         }
 
+        public async Task<IEnumerable<ProfileResult>> GetProfileFromImageAsync(Stream imageStream)
+        {
+            FaceAttributeType[] attributes = new FaceAttributeType[2];
+            attributes[0] = FaceAttributeType.Age;
+            attributes[1] = FaceAttributeType.Gender;
+            var profile = await _faceServiceClient.DetectAsync(imageStream, true, false, attributes );
+            return ConvertProfileToProfileResults(profile);
+        }
+
+        private static IEnumerable<ProfileResult> ConvertProfileToProfileResults(Microsoft.ProjectOxford.Face.Contract.Face[] faces)
+        {
+            foreach (var face in faces)
+            {
+                yield return new ProfileResult
+                {
+                    Age = (int)face.FaceAttributes.Age,
+                    Gender = face.FaceAttributes.Gender
+                };
+            }
+        }
 
         private static IEnumerable<SentimentResult> ConvertEmotionsToSentimentResults(Emotion[] emotions)
         {

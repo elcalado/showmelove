@@ -82,6 +82,18 @@ namespace ShowMeLove.Business.Managers
             return await _oxfordClient.GetSentimentsFromImageAsync(fileStream);
         }
 
+        public async Task<IEnumerable<ProfileResult>> GetProfileAsync(WriteableBitmap bitmap)
+        {
+            var file = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFileAsync("lastImageCapture.jpg", Windows.Storage.CreationCollisionOption.OpenIfExists);
+
+            if (file == null)
+                return null;
+
+            var fileStream = await file.OpenStreamForReadAsync();
+            return await _oxfordClient.GetProfileFromImageAsync(fileStream);
+        }
+
+
         public async Task TransmitSentimentsAsync(IEnumerable<SentimentResult> sentiments)
         {
             if (sentiments == null || !sentiments.Any())

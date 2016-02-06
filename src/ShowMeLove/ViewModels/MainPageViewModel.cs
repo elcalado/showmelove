@@ -128,6 +128,8 @@ namespace ShowMeLove.ViewModels
 
             // Send it to Oxford
             var sentiments = await _imageManager.GetSentimentsAsync(LastImage);
+            var profile = await _imageManager.GetProfileAsync(LastImage);
+
 
             // Put it on the event hub
             await _imageManager.TransmitSentimentsAsync(sentiments);
