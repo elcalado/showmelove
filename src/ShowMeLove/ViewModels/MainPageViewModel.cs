@@ -126,12 +126,17 @@ namespace ShowMeLove.ViewModels
         {
             LastImage = await _imageManager.GetBitmapAsync();
 
-            // Send it to Oxford
-            var sentiments = await _imageManager.GetSentimentsAsync(LastImage);
-            var profile = await _imageManager.GetProfileAsync(LastImage);
+            // Send it to Oxford
+            var sentiments = (await _imageManager.GetSentimentsAsync(LastImage)).ToList();
+            var profile = (await _imageManager.GetProfileAsync(LastImage)).ToList();
 
+            foreach (var sentiment in sentiments)
+            {
+                sentiment.Age = profile.First().Age;
+                sentiment.Gender = profile.First().Gender;
+            }
 
-            // Put it on the event hub
+            // Put it on the event hub
             await _imageManager.TransmitSentimentsAsync(sentiments);
         }
 
