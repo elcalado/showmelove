@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Graphics.Imaging;
 
 namespace ShowMeLove.Business.Managers
 {
@@ -73,7 +74,13 @@ namespace ShowMeLove.Business.Managers
 
         public async Task<IEnumerable<SentimentResult>> GetSentimentsAsync(WriteableBitmap bitmap)
         {
-            return await _oxfordClient.GetSentimentsFromImageAsync(bitmap.PixelBuffer.AsStream());
+            var file = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFileAsync("lastImageCapture.jpg", Windows.Storage.CreationCollisionOption.OpenIfExists);
+
+            if (file == null)
+                return null;
+
+            var fileStream = await file.OpenStreamForReadAsync();
+            return await _oxfordClient.GetSentimentsFromImageAsync(fileStream);
         }
     }
 }
