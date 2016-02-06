@@ -109,6 +109,7 @@
   <ItemGroup>
     <Compile Include="Contracts\Managers\IImageManager.cs" />
     <Compile Include="Contracts\Managers\IUserIdManager.cs" />
+    <Compile Include="Contracts\Repositories\IConfigurationReader.cs" />
     <Compile Include="Contracts\Repositories\IImageCapture.cs" />
     <Compile Include="Contracts\Repositories\IImageRepository.cs" />
     <Compile Include="Contracts\Repositories\IMessageTransmitter.cs" />

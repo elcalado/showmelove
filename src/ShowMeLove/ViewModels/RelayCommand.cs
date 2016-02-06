@@ -3,6 +3,8 @@ using System.Windows.Input;
 
 namespace ShowMeLove.ViewModels
 {
+// This variable is never used.. 
+#pragma warning disable 67
     public class RelayCommand : ICommand
     {
         private Action _action;
@@ -29,4 +31,5 @@ namespace ShowMeLove.ViewModels
             _action.Invoke();
         }
     }
+#pragma warning restore 67
 }
