@@ -85,6 +85,8 @@ namespace ShowMeLove.ViewModels
         {
             var result = await _imageManager.InitializeAsync();
 
+            LastImage = await _imageManager.GetBitmapAsync();
+
             if (!result)
                 throw new InvalidProgramException("Failed to initialize. oh crap!");
         }
