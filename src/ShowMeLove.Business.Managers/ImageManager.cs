@@ -10,16 +10,22 @@ using Windows.UI.Xaml.Media.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Graphics.Imaging;
 using System.Linq;
+using Windows.UI.Xaml;
 
 namespace ShowMeLove.Business.Managers
 {
     public class ImageManager : IImageManager
     {
+        public event EventHandler<int> OnTimerTick;
+
         private readonly IUserIdManager _userIdManager;
         private readonly IImageCapture _imageCapture;
         private readonly IImageRepository _imageRepository;
         private readonly IMessageTransmitter _messageTransmitter;
         private readonly IOxfordClient _oxfordClient;
+
+        private DispatcherTimer _timer;
+        private int _timeLeft;
 
         public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository,
             IImageCapture imageCapture, IMessageTransmitter messageTransmitter,
@@ -33,19 +39,30 @@ namespace ShowMeLove.Business.Managers
         }
 
 
-        public async Task<bool> UploadImageAsync()
-        {
-            return true;
-        }
-
-
         public async Task<bool> InitializeAsync()
         {
             var idManagerOk = await _userIdManager.InitializeAsync();
 
             if (!idManagerOk) return false;
 
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1); // TOOD: Insert from configuration here
+            _timer.Tick += _timer_Tick;
+            _timer.Start();
+
             return true;
+        }
+
+        private void _timer_Tick(object sender, object e)
+        {
+            if (OnTimerTick == null)
+                return;
+
+            _timeLeft -= 1;
+            if (_timeLeft < 0)
+                _timeLeft = 10;
+
+            OnTimerTick(this, _timeLeft);
         }
 
         public async Task<WriteableBitmap> GetBitmapAsync()

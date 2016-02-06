@@ -28,8 +28,18 @@ namespace ShowMeLove.ViewModels
             _imageManager = imageManager;
             _pauseButtonTitle = "Paused";
             _isRunning = false;
+            _imageManager.OnTimerTick += _imageManager_OnTimerTick;
         }
 
+        private async void _imageManager_OnTimerTick(object sender, int e)
+        {
+            TimeLeft = e.ToString();
+
+            if (e == 0)
+            {
+                await GetImageAndInvokeOxford();
+            }
+        }
 
         public string UserName
         {
@@ -103,13 +113,7 @@ namespace ShowMeLove.ViewModels
             {
                 PauseButtonTitle = "Active";
                 _isRunning = true;
-                LastImage = await _imageManager.GetBitmapAsync();
-
-                // Send it to Oxford
-                var sentiments = await _imageManager.GetSentimentsAsync(LastImage);
-
-                // Put it on the event hub
-                await _imageManager.TransmitSentimentsAsync(sentiments);
+                await GetImageAndInvokeOxford();
             }
             else
             {
@@ -118,6 +122,16 @@ namespace ShowMeLove.ViewModels
             }
         }
 
+        private async Task GetImageAndInvokeOxford()
+        {
+            LastImage = await _imageManager.GetBitmapAsync();
+
+            // Send it to Oxford
+            var sentiments = await _imageManager.GetSentimentsAsync(LastImage);
+
+            // Put it on the event hub
+            await _imageManager.TransmitSentimentsAsync(sentiments);
+        }
 
         public List<SentimentResult> Sentiments
         {

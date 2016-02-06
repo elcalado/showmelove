@@ -1,4 +1,5 @@
 ﻿using ShowMeLove.Domain.Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Media.Imaging;
@@ -7,7 +8,7 @@ namespace ShowMeLove.Domain.Core.Contracts.Managers
 {
     public interface IImageManager
     {
-        Task<bool> UploadImageAsync();
+        event EventHandler<int> OnTimerTick;
 
         Task<bool> InitializeAsync();
 
