@@ -17,18 +17,9 @@
     },
     "adminPassword": {
       "type": "securestring"
-    },
-   
-    "certificateThumbprint": {
-      "type": "string"
-    },
-    "sourceVaultValue": {
-      "type": "string"
-    },
-    "certificateUrlValue": {
-      "type": "string"
-        
     }
+   
+  
    },
   "variables": {
     "computeLocation": "[parameters('clusterLocation')]",
@@ -233,11 +224,8 @@
         "publisher": "Microsoft.Azure.ServiceFabric",
         "settings": {
           "clusterEndpoint": "[reference(variables('clusterName')).clusterEndpoint]",
-          "nodeTypeRef": "NodeType1",
-          "certificate": {
-            "thumbprint": "[parameters('certificateThumbprint')]",
-            "x509StoreName": "My"
-          }
+          "nodeTypeRef": "NodeType1"
+         
         },
         "typeHandlerVersion": "1.0"
       }
@@ -306,11 +294,8 @@
               }
             }
           },
-          "StorageAccount": "[variables('applicationDiagnosticsStorageAccountName')]",
-          "certificate": {
-            "thumbprint": "[parameters('certificateThumbprint')]",
-            "x509StoreName": "My"
-          }
+          "StorageAccount": "[variables('applicationDiagnosticsStorageAccountName')]"
+        
         },
         "typeHandlerVersion": "1.5"
       }
@@ -352,19 +337,8 @@
           "adminPassword": "[parameters('adminPassword')]",
           "adminUsername": "[parameters('adminUsername')]",
           "computerName": "[concat(variables('vmNodeType0Name'), copyIndex(0))]",
-          "secrets": [
-            {
-              "sourceVault": {
-                "id": "[parameters('sourceVaultValue')]"
-              },
-              "vaultCertificates": [
-                {
-                  "certificateStore": "My",
-                  "certificateUrl": "[parameters('certificateUrlValue')]"
-                }
-              ]
-            }
-          ],
+        
+          
           "windowsConfiguration": {
             "enableAutomaticUpdates": false,
             "provisionVMAgent": true
@@ -623,10 +597,7 @@
         "displayName": "Cluster"
       },
       "properties": {
-        "certificate": {
-          "thumbprint": "[parameters('certificateThumbprint')]",
-          "x509StoreName": "My"
-        },
+   
         "diagnosticsStorageAccountConfig": {
           "blobEndpoint": "[concat('https://', variables('supportLogStorageAccountName'), '.blob.core.windows.net/')]",
           "protectedAccountKeyName": "StorageAccountKey1",
@@ -645,8 +616,7 @@
           {
             "parameters": [
               {
-                "name": "ClusterProtectionLevel",
-                "value": "EncryptAndSign"
+               
               }
             ],
             "name": "Security"
