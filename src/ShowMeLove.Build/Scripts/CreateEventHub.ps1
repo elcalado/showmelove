@@ -48,7 +48,6 @@
     -- West US
     
 #>
-Function
 
 [CmdletBinding(PositionalBinding=$True)]
 Param(
