@@ -59,7 +59,7 @@
                     "collation": "[variables('collation')]",
                     "edition": "Standard",
                     "maxSizeBytes": "1073741824",
-                    "requestedServiceObjectiveName": "[variables('dbshowmeloveRequestedServiceObjectiveName')"
+                    "requestedServiceObjectiveName": "[variables('dbshowmeloveRequestedServiceObjectiveName')]"
                   },
                     "resources": [
                         
