@@ -29,7 +29,6 @@
       <Visible>False</Visible>
     </None>
     <Content Include="Scripts\Deploy-AzureResourceGroup.ps1" />
-    <Content Include="Templates\ServiceFabricCluster.json" />
     <None Include="readme.txt" />
     <Content Include="Scripts\CreateKeyVaultAndCert.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -46,14 +45,14 @@
     <Content Include="Scripts\CreateEventHub.ps1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Templates\KeyVault.json">
+    <None Include="Templates\AppService.json" />
+    <Content Include="Templates\SQLDB.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Templates\AppService.json" />
-    <None Include="Templates\SQLDB.json" />
     <Content Include="Tools\Microsoft.ServiceBus.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Templates\WebApp.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\AzCopy.exe" />
