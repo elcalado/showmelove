@@ -9,12 +9,12 @@ namespace ShowMyLove.Data.EventHub
 {
     public class MessageTransmitter : IMessageTransmitter
     {
-        private static string eventHubConnectionstring = "Endpoint=sb://showmelove.servicebus.windows.net/;SharedAccessKeyName=policysml;SharedAccessKey=kJd1wMpwjpWolfkCs3TsgOD/IhyZnVXptQld1MGHUcs=";
+        private static string eventHubConnectionstring = "Endpoint=sb://showlovens.servicebus.windows.net/;SharedAccessKeyName=read;SharedAccessKey=uYFJwXmV0d0Ta8kDW03MLadfLAEkpUch0zP1EeqcfFg=";
         private EventHubClient _eventHubClient;
 
         public MessageTransmitter()
         {
-            _eventHubClient = EventHubClient.CreateFromConnectionString(eventHubConnectionstring, "eventhub");
+            _eventHubClient = EventHubClient.CreateFromConnectionString(eventHubConnectionstring, "showlove");
         }
 
 
