@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "10 Presentation Layer", "10 Presentation Layer", "{5265EE8E-483C-49B6-AD76-266F8E84BB82}"
 EndProject
@@ -42,6 +42,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShowMeLove.Data.Http", "ShowMeLove.Data.Http\ShowMeLove.Data.Http.csproj", "{337540EF-89B6-4B57-B4DA-5766CAB50A9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmlApi", "SmlApi\SmlApi.csproj", "{5AD2E5ED-0F84-4D2D-B551-AC8DD07BD58A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaintainConfig", "MaintainConfig\MaintainConfig.csproj", "{5245E96E-61F0-421B-9955-CB9EFF293ACC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -276,6 +278,22 @@ Global
 		{5AD2E5ED-0F84-4D2D-B551-AC8DD07BD58A}.Release|x64.Build.0 = Release|Any CPU
 		{5AD2E5ED-0F84-4D2D-B551-AC8DD07BD58A}.Release|x86.ActiveCfg = Release|Any CPU
 		{5AD2E5ED-0F84-4D2D-B551-AC8DD07BD58A}.Release|x86.Build.0 = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|ARM.Build.0 = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|x64.Build.0 = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Debug|x86.Build.0 = Debug|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|ARM.ActiveCfg = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|ARM.Build.0 = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|x64.ActiveCfg = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|x64.Build.0 = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|x86.ActiveCfg = Release|Any CPU
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -297,5 +315,6 @@ Global
 		{6E924EDD-D61F-41CC-86D4-A9F16EF83A94} = {CC316538-4BA4-44C1-95EC-4323EE13FD65}
 		{337540EF-89B6-4B57-B4DA-5766CAB50A9B} = {CC316538-4BA4-44C1-95EC-4323EE13FD65}
 		{5AD2E5ED-0F84-4D2D-B551-AC8DD07BD58A} = {F549E384-BA1C-456B-AA9A-2DD0DD659D3C}
+		{5245E96E-61F0-421B-9955-CB9EFF293ACC} = {C7FB88B9-490E-4FD4-8E1B-15C59F70B331}
 	EndGlobalSection
 EndGlobal

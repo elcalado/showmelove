@@ -1,0 +1,25 @@
+﻿@model MaintainConfig.Models.ConfigEntity
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Settings</h2>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.PartitionKey)
+    @Html.HiddenFor(model => model.RowKey)
+    @Html.HiddenFor(model => model.Timestamp)
+
+
+    <div>
+        @Html.LabelFor(model=>model.Value, "Photo Interval")
+        @Html.TextBoxFor(model => model.Value)
+    </div>
+
+    <div>
+        <input type="submit" value="Save Config Info" class="btn btn-default" />
+    </div>
+
+}
+
