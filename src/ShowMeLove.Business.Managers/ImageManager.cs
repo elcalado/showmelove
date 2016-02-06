@@ -56,8 +56,6 @@ namespace ShowMeLove.Business.Managers
 
             if (!idManagerOk) return false;
 
-            var image = _imageCapture.CaptureJpegImageAsync();
-
             return true;
         }
 
@@ -67,19 +65,9 @@ namespace ShowMeLove.Business.Managers
         }
 
 
-        private  async Task<BitmapImage> GetImageFromWebCam()
+        private async Task<BitmapImage> GetImageFromWebCam()
         {
-            var imageStream = await _imageCapture.CaptureJpegImageAsync();
-
-            if (imageStream == null)
-                return null;
-
-            var bitmapImage = new BitmapImage();
-
-            await bitmapImage.SetSourceAsync(imageStream);
-
-            return bitmapImage;
-            
+            return await _imageCapture.CaptureJpegImageAsync();
         }
 
     }

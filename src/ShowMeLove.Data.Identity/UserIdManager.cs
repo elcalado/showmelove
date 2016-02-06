@@ -14,9 +14,7 @@ namespace ShowMeLove.Data.Identity
         static string authority   = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
         static string resourceId  = "https://graph.windows.net/";
 
-
         private AuthenticationResult _authenticationResult;
-        private string _userId;
 
         
         public async Task<bool> InitializeAsync()

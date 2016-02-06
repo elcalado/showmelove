@@ -1,6 +1,7 @@
 ﻿using ShowMeLove.Business.Managers;
 using ShowMeLove.Data.Identity;
 using ShowMeLove.Domain.Core.Contracts.Repositories;
+using ShowMeLove.ViewModels;
 using StructureMap;
 
 namespace ShowMeLove.DependencyInversion
@@ -24,6 +25,8 @@ namespace ShowMeLove.DependencyInversion
 
                 x.WithDefaultConventions();
             });
+
+            AddType(typeof(MainPageViewModel), typeof(MainPageViewModel));
 
         }
     }

@@ -35,9 +35,14 @@
 
         <Viewbox    HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
-                    
+                    MinWidth="240"
+                    MinHeight="200"
                     Grid.Row="1">
-            <Image  Source="{Binding LastImage}" />
+            <Image  Source="{Binding LastImage, FallbackValue='Assets/cat.png'}"
+                    Width="240"
+                    Height="200"
+                    Stretch="Uniform"
+                    />
 
         </Viewbox>
 
@@ -55,7 +60,7 @@
                         />
         </Viewbox>
 
-        <Button Content="Pause"
+        <Button Content="{Binding PauseButtonTitle}"
                 Command="{Binding PauseCommand}"
                 Grid.ColumnSpan="2"
                 Grid.Row="2"
