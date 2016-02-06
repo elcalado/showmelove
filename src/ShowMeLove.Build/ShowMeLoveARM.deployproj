@@ -52,6 +52,7 @@
     <Content Include="Tools\Microsoft.ServiceBus.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Templates\WebApp.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Tools\AzCopy.exe" />
