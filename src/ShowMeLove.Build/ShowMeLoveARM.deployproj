@@ -34,11 +34,24 @@
     <Content Include="Scripts\Deploy-AzureResourceGroup.ps1" />
     <Content Include="Templates\ServiceFabricCluster.json" />
     <None Include="readme.txt" />
-    <None Include="Scripts\CreateKeyVaultAndCert.ps1" />
-    <None Include="Scripts\DeployDB.ps1" />
-    <None Include="Scripts\DeployShowMeLove.ps1" />
-    <None Include="Scripts\New-ServiceFabricClusterCertificate.ps1" />
-    <None Include="Scripts\CreateEventHub.ps1" />
+    <Content Include="Scripts\CreateKeyVaultAndCert.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\DeployDB.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\DeployShowMeLove.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\New-ServiceFabricClusterCertificate.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\CreateEventHub.ps1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Templates\KeyVault.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Templates\SQLDB.json" />
   </ItemGroup>
   <ItemGroup>

@@ -19,8 +19,8 @@ param(
       [string] [Parameter(Mandatory=$true)] $Location
 )
 
-New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
-New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupName -Location WestUS -EnabledForDeployment
+#New-AzureRmResourceGroup -Name $ResourceGroupName -Location $Location
+#New-AzureRmKeyVault -VaultName $KeyVaultName -ResourceGroupName $ResourceGroupName -Location WestUS -EnabledForDeployment
 
 $SecurePassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
 $CertFileFullPath = $(Join-Path (Split-Path -Parent $MyInvocation.MyCommand.Definition) "\$CertDNSName.pfx")
