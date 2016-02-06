@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using ShowMeLove.Domain.Core.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 
 namespace ShowMeLove.Domain.Core.Contracts.Managers
@@ -9,6 +12,8 @@ namespace ShowMeLove.Domain.Core.Contracts.Managers
 
         Task<bool> InitializeAsync();
 
-        Task<BitmapImage> GetBitmapAsync();
+        Task<WriteableBitmap> GetBitmapAsync();
+
+        Task<IEnumerable<SentimentResult>> GetSentimentsAsync(WriteableBitmap bitmap);
     }
 }

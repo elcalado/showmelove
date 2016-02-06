@@ -1,10 +1,13 @@
-﻿using System;
-using ShowMeLove.Domain.Core.Contracts.Managers;
+﻿using ShowMeLove.Domain.Core.Contracts.Managers;
 using ShowMeLove.Domain.Core.Contracts.Repositories;
 using ShowMeLove.Domain.Core.Entities;
-using System.Threading.Tasks;
-using Windows.UI.Xaml.Media.Imaging;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Media.Imaging;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace ShowMeLove.Business.Managers
 {
@@ -14,14 +17,17 @@ namespace ShowMeLove.Business.Managers
         private readonly IImageCapture _imageCapture;
         private readonly IImageRepository _imageRepository;
         private readonly IMessageTransmitter _messageTransmitter;
+        private readonly IOxfordClient _oxfordClient;
 
-
-        public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository, IImageCapture imageCapture, IMessageTransmitter messageTransmitter)
+        public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository,
+            IImageCapture imageCapture, IMessageTransmitter messageTransmitter,
+            IOxfordClient oxfordClient)
         {
             _userIdManager = userIdManager;
             _imageRepository = imageRepository;
             _imageCapture = imageCapture;
             _messageTransmitter = messageTransmitter;
+            _oxfordClient = oxfordClient;
         }
 
 
@@ -56,31 +62,18 @@ namespace ShowMeLove.Business.Managers
 
             if (!idManagerOk) return false;
 
-            var image = _imageCapture.CaptureJpegImageAsync();
-
             return true;
         }
 
-        public async Task<BitmapImage> GetBitmapAsync()
+        public async Task<WriteableBitmap> GetBitmapAsync()
         {
-            return await GetImageFromWebCam();
+            return await _imageCapture.CaptureJpegImageAsync();
         }
 
 
-        private  async Task<BitmapImage> GetImageFromWebCam()
+        public async Task<IEnumerable<SentimentResult>> GetSentimentsAsync(WriteableBitmap bitmap)
         {
-            var imageStream = await _imageCapture.CaptureJpegImageAsync();
-
-            if (imageStream == null)
-                return null;
-
-            var bitmapImage = new BitmapImage();
-
-            await bitmapImage.SetSourceAsync(imageStream);
-
-            return bitmapImage;
-            
+            return await _oxfordClient.GetSentimentsFromImageAsync(bitmap.PixelBuffer.AsStream());
         }
-
     }
 }

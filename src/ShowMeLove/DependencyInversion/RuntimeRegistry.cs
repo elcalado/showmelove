@@ -1,6 +1,4 @@
-﻿using ShowMeLove.Business.Managers;
-using ShowMeLove.Data.Identity;
-using ShowMeLove.Domain.Core.Contracts.Repositories;
+﻿using ShowMeLove.ViewModels;
 using StructureMap;
 
 namespace ShowMeLove.DependencyInversion
@@ -19,11 +17,15 @@ namespace ShowMeLove.DependencyInversion
                 x.Assembly("ShowMeLove.Data.AzureStorage");
                 x.Assembly("ShowMyLove.Data.EventHub"); // yup, spelling error
                 x.Assembly("ShowMeLove.Data.Identity");
+                x.Assembly("ShowMeLove.Data.Http");
+                x.Assembly("ShowMeLove.Data.file");
                 x.Assembly("ShowMeLove.Data.Imaging");
                 x.Assembly("ShowMeLove.Data.Fakes");
 
                 x.WithDefaultConventions();
             });
+
+            AddType(typeof(MainPageViewModel), typeof(MainPageViewModel));
 
         }
     }
