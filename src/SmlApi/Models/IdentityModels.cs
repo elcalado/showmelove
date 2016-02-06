@@ -29,5 +29,7 @@ namespace SmlApi.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<SmlApi.Models.Session> Sessions { get; set; }
     }
 }
