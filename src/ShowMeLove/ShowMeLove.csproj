@@ -144,6 +144,10 @@
       <Project>{9ac1dd7b-da1c-499c-84ab-a4a27e4ee2b2}</Project>
       <Name>ShowMeLove.Data.Fakes</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ShowMeLove.Data.File\ShowMeLove.Data.File.csproj">
+      <Project>{6e924edd-d61f-41cc-86d4-a9f16ef83a94}</Project>
+      <Name>ShowMeLove.Data.File</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShowMeLove.Data.Identity\ShowMeLove.Data.Identity.csproj">
       <Project>{1c9ecb2f-b7b0-4db0-974a-3c75cbd8a2c2}</Project>
       <Name>ShowMeLove.Data.Identity</Name>
