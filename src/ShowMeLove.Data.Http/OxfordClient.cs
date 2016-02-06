@@ -7,6 +7,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Net.Http;
+using Microsoft.ProjectOxford.Face;
 
 namespace ShowMeLove.Data.Http
 {
@@ -14,18 +15,24 @@ namespace ShowMeLove.Data.Http
     {
         private static HttpClient _httpClient = new HttpClient();
         private const string OxfordClientSubscriptionKey = "5df0154542ef485abe98bd10347cecd0";
-        private readonly EmotionServiceClient _emotionServiceClient;
+        private const string OxfordFaceRecognitionKey = "69e72f4404934e9c877f3e1643ba66a4";
 
+        private readonly EmotionServiceClient _emotionServiceClient;
+        private readonly FaceServiceClient _faceServiceClient;
 
         public OxfordClient()
         {
             _emotionServiceClient = new EmotionServiceClient(_httpClient, OxfordClientSubscriptionKey);
+            _faceServiceClient    = new FaceServiceClient(OxfordFaceRecognitionKey);
         }
 
 
         public async Task<IEnumerable<SentimentResult>> GetSentimentsFromImageAsync(Stream imageStream)
         {
-            var emotions = await _emotionServiceClient.RecognizeAsync(imageStream);
+            // var fileStream = await Task.Run( ()  => File.OpenRead(@"C:\Users\pedias\OneDrive\Bilder\1997\Bilde05.jpg"));
+
+            var faceSomething = await _faceServiceClient.DetectAsync(imageStream, false, true);
+            var emotions      = await _emotionServiceClient.RecognizeAsync(imageStream);
 
             return ConvertEmotionsToSentimentResults(emotions);
         }

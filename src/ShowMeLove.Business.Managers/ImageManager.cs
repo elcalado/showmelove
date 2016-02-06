@@ -19,7 +19,7 @@ namespace ShowMeLove.Business.Managers
         private readonly IMessageTransmitter _messageTransmitter;
         private readonly IOxfordClient _oxfordClient;
 
-        public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository, 
+        public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository,
             IImageCapture imageCapture, IMessageTransmitter messageTransmitter,
             IOxfordClient oxfordClient)
         {
@@ -73,8 +73,7 @@ namespace ShowMeLove.Business.Managers
 
         public async Task<IEnumerable<SentimentResult>> GetSentimentsAsync(WriteableBitmap bitmap)
         {
-
-                return await _oxfordClient.GetSentimentsFromImageAsync(bitmap.PixelBuffer.AsStream());
+            return await _oxfordClient.GetSentimentsFromImageAsync(bitmap.PixelBuffer.AsStream());
         }
     }
 }
