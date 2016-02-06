@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using ShowMeLove.Domain.Core.Entities;
+using System.Threading.Tasks;
 
 namespace ShowMeLove.Domain.Core.Contracts.Repositories
 {
     public interface IMessageTransmitter
     {
-        Task TransmitImageSavedAsync(string userId, string blobName);
+        Task TransmitImageSavedAsync(SentimentResult result);
     }
 }

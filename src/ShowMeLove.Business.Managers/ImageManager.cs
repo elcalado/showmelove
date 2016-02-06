@@ -9,6 +9,7 @@ using Windows.Storage.Streams;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Graphics.Imaging;
+using System.Linq;
 
 namespace ShowMeLove.Business.Managers
 {
@@ -34,25 +35,6 @@ namespace ShowMeLove.Business.Managers
 
         public async Task<bool> UploadImageAsync()
         {
-            // Grab ID of the user
-            var userId = await _userIdManager.GetAsync();
-            if (userId == null)
-                return false;
-
-            // Create BLOB name
-            var blobName = userId.ToString() + Guid.NewGuid().ToString();
-
-            // Upload the image
-
-            //var imageUploadNotification = new ImageUploadNotification
-            //{
-            //    UserId = userId,
-            //    BlobUrl = blobUrl
-            //};
-
-            //// When the image is uploaded, send a message on the event hub with the ID and blob name
-            //await _messageTransmitter.TransmitImageSavedAsync(userId, blobName);
-
             return true;
         }
 
@@ -81,6 +63,15 @@ namespace ShowMeLove.Business.Managers
 
             var fileStream = await file.OpenStreamForReadAsync();
             return await _oxfordClient.GetSentimentsFromImageAsync(fileStream);
+        }
+
+        public async Task TransmitSentimentsAsync(IEnumerable<SentimentResult> sentiments)
+        {
+            if (sentiments == null || !sentiments.Any())
+                return;
+
+            foreach (var sentiment in sentiments)
+                await _messageTransmitter.TransmitImageSavedAsync(sentiment);
         }
     }
 }

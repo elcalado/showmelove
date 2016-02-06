@@ -5,7 +5,8 @@ using System.Windows.Input;
 using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
 using System.Linq;
-
+using ShowMeLove.Domain.Core.Entities;
+using System.Collections.Generic;
 
 namespace ShowMeLove.ViewModels
 {
@@ -20,6 +21,7 @@ namespace ShowMeLove.ViewModels
         private RelayCommand _pauseCommand;
         private string _pauseButtonTitle;
         private bool _isRunning;
+        private List<SentimentResult> _sentiments;
 
         public MainPageViewModel(IImageManager imageManager)
         {
@@ -105,11 +107,25 @@ namespace ShowMeLove.ViewModels
 
                 // Send it to Oxford
                 var sentiments = await _imageManager.GetSentimentsAsync(LastImage);
+
+                // Put it on the event hub
+                await _imageManager.TransmitSentimentsAsync(sentiments);
             }
             else
             {
                 _isRunning = false;
                 PauseButtonTitle = "Paused";
+            }
+        }
+
+
+        public List<SentimentResult> Sentiments
+        {
+            get { return _sentiments; }
+            set
+            {
+                _sentiments = new List<SentimentResult>(value);
+                ShoutAbout("Sentiments");
             }
         }
 
