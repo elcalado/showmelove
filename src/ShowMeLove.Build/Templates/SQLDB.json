@@ -1,0 +1,73 @@
+﻿{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "adminUserName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "adminPassword": {
+      "type": "securestring"
+    }
+  },
+  "variables": {
+    "srvshowmeloveName": "[concat('srvshowmelove', uniqueString(resourceGroup().id))]",
+    "dbshowmeloveName": "dbshowmelove",
+    "dbshowmeloveRequestedServiceObjectiveName": "S1",
+    "collation": "SQL_Latin1_General_CP1_CI_AS"
+  },
+    "resources": [
+        {
+            "name": "[variables('srvshowmeloveName')]",
+            "type": "Microsoft.Sql/servers",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2014-04-01-preview",
+            "dependsOn": [ ],
+            "tags": {
+                "displayName": "srvshowmelove"
+            },
+          "properties": {
+            "administratorLogin": "[parameters('adminUserName')]",
+            "administratorLoginPassword": "[parameters('adminPassword')]"
+          },
+            "resources": [
+                {
+                    "name": "AllowAllWindowsAzureIps",
+                    "type": "firewallrules",
+                    "location": "[resourceGroup().location]",
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [
+                        "[concat('Microsoft.Sql/servers/', variables('srvshowmeloveName'))]"
+                    ],
+                    "properties": {
+                        "startIpAddress": "0.0.0.0",
+                        "endIpAddress": "0.0.0.0"
+                    }
+                },
+                {
+                    "name": "[variables('dbshowmeloveName')]",
+                    "type": "databases",
+                    "location": "[resourceGroup().location]",
+                    "apiVersion": "2014-04-01-preview",
+                    "dependsOn": [
+                        "[variables('srvshowmeloveName')]"
+                    ],
+                    "tags": {
+                        "displayName": "dbshowmelove"
+                    },
+                  "properties": {
+                    "collation": "[variables('collation')]",
+                    "edition": "Standard",
+                    "maxSizeBytes": "1073741824",
+                    "requestedServiceObjectiveName": "[variables('dbshowmeloveRequestedServiceObjectiveName')"
+                  },
+                    "resources": [
+                        
+                    ]
+                }
+            ]
+        }
+    ],
+    "outputs": {
+    }
+}
