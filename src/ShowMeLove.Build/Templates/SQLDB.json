@@ -13,8 +13,7 @@
   "variables": {
     "srvshowmeloveName": "[concat('srvshowmelove', uniqueString(resourceGroup().id))]",
     "dbshowmeloveName": "dbshowmelove",
-    "dbshowmeloveRequestedServiceObjectiveName": "S1",
-    "collation": "SQL_Latin1_General_CP1_CI_AS"
+     "collation": "SQL_Latin1_General_CP1_CI_AS"
   },
     "resources": [
         {
@@ -59,7 +58,7 @@
                     "collation": "[variables('collation')]",
                     "edition": "Standard",
                     "maxSizeBytes": "1073741824",
-                    "requestedServiceObjectiveName": "[variables('dbshowmeloveRequestedServiceObjectiveName')]"
+                    "requestedServiceObjectiveName": "S1"
                   },
                     "resources": [
                         
