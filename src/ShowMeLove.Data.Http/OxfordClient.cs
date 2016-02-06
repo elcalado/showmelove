@@ -41,14 +41,17 @@ namespace ShowMeLove.Data.Http
             {
                 yield return new SentimentResult
                 {
-                    Anger     = (decimal)emotion.Scores.Anger,
-                    Contempt  = (decimal)emotion.Scores.Contempt,
-                    Disgust   = (decimal)emotion.Scores.Disgust,
-                    Fear      = (decimal)emotion.Scores.Fear,
+                    Anger = (decimal)emotion.Scores.Anger,
+                    Contempt = (decimal)emotion.Scores.Contempt,
+                    Disgust = (decimal)emotion.Scores.Disgust,
+                    Fear = (decimal)emotion.Scores.Fear,
                     Happiness = (decimal)emotion.Scores.Happiness,
-                    Neutral   = (decimal)emotion.Scores.Neutral,
-                    Sadness   = (decimal)emotion.Scores.Sadness,
-                    Surprise  = (decimal)emotion.Scores.Surprise,
+                    Neutral = (decimal)emotion.Scores.Neutral,
+                    Sadness = (decimal)emotion.Scores.Sadness,
+                    Surprise = (decimal)emotion.Scores.Surprise,
+                    Moment = DateTime.Now,
+                    Age = 20,
+                    Gender = "M"
                 };
             }
         }
