@@ -1,7 +1,10 @@
 ﻿using ShowMeLove.Domain.Core.Contracts.Managers;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Graphics.Imaging;
 using Windows.UI.Xaml.Media.Imaging;
+
 
 namespace ShowMeLove.ViewModels
 {
@@ -12,7 +15,7 @@ namespace ShowMeLove.ViewModels
         // Visible assets, bindables
         private string _userName;
         private string _timeLeft;
-        private BitmapImage _lastImage;
+        private WriteableBitmap _lastImage;
         private RelayCommand _pauseCommand;
         private string _pauseButtonTitle;
         private bool _isRunning;
@@ -53,7 +56,7 @@ namespace ShowMeLove.ViewModels
         }
 
 
-        public BitmapImage LastImage
+        public WriteableBitmap LastImage
         {
             get { return _lastImage; }
             set
@@ -98,6 +101,8 @@ namespace ShowMeLove.ViewModels
                 PauseButtonTitle = "Active";
                 _isRunning = true;
                 LastImage = await _imageManager.GetBitmapAsync();
+
+                
             }
             else
             {
@@ -105,6 +110,9 @@ namespace ShowMeLove.ViewModels
                 PauseButtonTitle = "Paused";
             }
         }
+
+
+
 
 
         public async Task InitializeAsync()

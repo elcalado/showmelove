@@ -9,6 +9,6 @@ namespace ShowMeLove.Domain.Core.Contracts.Managers
 
         Task<bool> InitializeAsync();
 
-        Task<BitmapImage> GetBitmapAsync();
+        Task<WriteableBitmap> GetBitmapAsync();
     }
 }

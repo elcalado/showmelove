@@ -113,7 +113,8 @@
     <Compile Include="Contracts\Repositories\IImageCapture.cs" />
     <Compile Include="Contracts\Repositories\IImageRepository.cs" />
     <Compile Include="Contracts\Repositories\IMessageTransmitter.cs" />
-    <Compile Include="Entities\ImageUploadNotification.cs" />
+    <Compile Include="Contracts\Repositories\IOxfordClient.cs" />
+    <Compile Include="Entities\SentimentResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\ShowMeLove.Domain.Core.rd.xml" />
   </ItemGroup>

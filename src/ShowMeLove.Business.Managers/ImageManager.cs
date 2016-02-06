@@ -59,16 +59,9 @@ namespace ShowMeLove.Business.Managers
             return true;
         }
 
-        public async Task<BitmapImage> GetBitmapAsync()
-        {
-            return await GetImageFromWebCam();
-        }
-
-
-        private async Task<BitmapImage> GetImageFromWebCam()
+        public async Task<WriteableBitmap> GetBitmapAsync()
         {
             return await _imageCapture.CaptureJpegImageAsync();
         }
-
     }
 }
