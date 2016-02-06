@@ -49,7 +49,7 @@
     
 #>
 Function
- CreateEventHub {
+
 [CmdletBinding(PositionalBinding=$True)]
 Param(
     [Parameter(Mandatory = $true)]
@@ -131,4 +131,4 @@ $finishTime = Get-Date
 # Output the time consumed in seconds
 $TotalTime = ($finishTime - $startTime).TotalSeconds
 Write-Output "The script completed in $TotalTime seconds."
-	}
+	
