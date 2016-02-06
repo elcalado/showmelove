@@ -1,0 +1,65 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+  
+    "tenantId": {
+      "type": "string",
+      "metadata": {
+        "description": "Tenant Id for the subscription and use assigned access to the vault. Available from the Get-AzureRMSubscription PowerShell cmdlet"
+      }
+    },
+    "objectId": {
+      "type": "string",
+      "metadata": {
+        "description": "Object Id of the AAD user or service principal that will have access to the vault. Available from the Get-AzureRMADUser or the Get-AzureRMADServicePrincipal cmdlets"
+      }
+    }
+    
+  
+  },
+  "variables": {
+
+    "enableVaultForVolumeEncryption": true,
+    "enabledForTemplateDeployment": true,
+    "enabledForDeployment": true,
+    "vaultSku": "Standard",
+    "secretsPermissions": "all",
+    "keysPermissions": "all",
+    "keyVaultName": "showmelove"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.KeyVault/vaults",
+      "name": "[variables('keyVaultName')]",
+      "apiVersion": "2015-06-01",
+      "location": "[resourceGroup().location]",
+      "tags": {
+        "displayName": "KeyVault"
+      },
+      "properties": {
+        "enabledForDeployment": "[variables('enabledForDeployment')]",
+        "enabledForTemplateDeployment": "[variables('enabledForTemplateDeployment')]",
+        "enabledForVolumeEncryption": "[variables('enableVaultForVolumeEncryption')]",
+        "tenantId": "[parameters('tenantId')]",
+        "accessPolicies": [
+          {
+            "tenantId": "[parameters('tenantId')]",
+            "objectId": "[parameters('objectId')]",
+            "permissions": {
+              "keys": "[variables('keysPermissions')]",
+              "secrets": "[variables('secretsPermissions')]"
+            }
+          }
+        ],
+        "sku": {
+          "name": "[variables('vaultSku')]",
+          "family": "A"
+        }
+      },
+      "resources": [
+
+      ]
+    }
+  ]
+}
