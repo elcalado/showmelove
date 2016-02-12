@@ -20,19 +20,19 @@ namespace ShowMeLove.Business.Managers
 
         private readonly IUserIdManager _userIdManager;
         private readonly IImageCapture _imageCapture;
-        private readonly IImageRepository _imageRepository;
         private readonly IMessageTransmitter _messageTransmitter;
         private readonly IOxfordClient _oxfordClient;
 
         private DispatcherTimer _timer;
         private int _timeLeft;
 
-        public ImageManager(IUserIdManager userIdManager, IImageRepository imageRepository,
-            IImageCapture imageCapture, IMessageTransmitter messageTransmitter,
+        public ImageManager(
+            IUserIdManager userIdManager, 
+            IImageCapture imageCapture, 
+            IMessageTransmitter messageTransmitter,
             IOxfordClient oxfordClient)
         {
             _userIdManager = userIdManager;
-            _imageRepository = imageRepository;
             _imageCapture = imageCapture;
             _messageTransmitter = messageTransmitter;
             _oxfordClient = oxfordClient;

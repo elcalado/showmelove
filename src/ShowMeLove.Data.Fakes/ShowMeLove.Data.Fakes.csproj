@@ -107,7 +107,6 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeImageRepository.cs" />
     <Compile Include="FakeLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\ShowMeLove.Data.Fakes.rd.xml" />

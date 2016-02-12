@@ -112,7 +112,6 @@
     <Compile Include="Contracts\Managers\IUserIdManager.cs" />
     <Compile Include="Contracts\Repositories\IConfigurationReader.cs" />
     <Compile Include="Contracts\Repositories\IImageCapture.cs" />
-    <Compile Include="Contracts\Repositories\IImageRepository.cs" />
     <Compile Include="Contracts\Repositories\ILogger.cs" />
     <Compile Include="Contracts\Repositories\IMessageTransmitter.cs" />
     <Compile Include="Contracts\Repositories\IOxfordClient.cs" />
