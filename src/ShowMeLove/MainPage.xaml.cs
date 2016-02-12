@@ -17,6 +17,7 @@ namespace ShowMeLove
             Loaded += MainPage_Loaded;
         }
 
+
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             DataContext = App.DependencyResolver.GetInstance<MainPageViewModel>();

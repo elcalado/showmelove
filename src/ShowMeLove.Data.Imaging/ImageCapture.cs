@@ -40,12 +40,10 @@ namespace ShowMeLove.Data.Imaging
             {
                 var file = await Windows.Storage.KnownFolders.PicturesLibrary.CreateFileAsync(IMAGECAPTURE_FILENAME, Windows.Storage.CreationCollisionOption.ReplaceExisting);
 
-                await _exceptionHandler.RunActionAsync(async () => 
+                await _exceptionHandler.Run(async () =>
                 {
-                    await _mediaCapture.CapturePhotoToStorageFileAsync(_imageEncodingProperties, file); 
-
+                    await _mediaCapture.CapturePhotoToStorageFileAsync(_imageEncodingProperties, file);
                     var photoStream = await file.OpenAsync(Windows.Storage.FileAccessMode.Read);
-
                     await bitmap.SetSourceAsync(photoStream);
                 });
             }

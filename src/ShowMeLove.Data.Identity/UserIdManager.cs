@@ -9,12 +9,6 @@ namespace ShowMeLove.Data.Identity
 {
     public class UserIdManager : IUserIdManager
     {
-        static string tenant      = "showmelove.onmicrosoft.com";
-        static string clientId    = "b9852d74-58b3-440b-a097-548dfba43f74 ";
-        static string aadInstance = "https://login.microsoftonline.com/{0}";
-        static string resourceId  = "https://graph.windows.net/";
-        static string authority   = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
-
         private AuthenticationResult _authenticationResult;
         private readonly IConfigurationReader _configurationReader;
 
@@ -25,12 +19,17 @@ namespace ShowMeLove.Data.Identity
         
         public async Task<bool> InitializeAsync()
         {
+            var tenant      = _configurationReader["AAD_Tenant"];
+            var instance    = _configurationReader["AAD_Instance"];
+            var resourceId  = _configurationReader["AAD_ResourceId"];
+            var clientId    = _configurationReader["AAD_ClientId"];
+            var callbackUrl = _configurationReader["AAD_CallbackUri"];
+
+            var callbackUri = new Uri(callbackUrl);
+            var authority = String.Format(CultureInfo.InvariantCulture, instance, tenant);
+
             var redirectUri = Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
             var authContext = new AuthenticationContext(authority);
-
-            var callBackUri = _configurationReader["AuthenticationCallbackUri"];
-
-            Uri callbackUri = new Uri("http://showmylove.azurewebsites.net");
 
             var platformParameters = new PlatformParameters(PromptBehavior.Auto, false);
 

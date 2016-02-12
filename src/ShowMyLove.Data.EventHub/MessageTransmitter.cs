@@ -25,11 +25,9 @@ namespace ShowMyLove.Data.EventHub
             var serialized = JsonConvert.SerializeObject(result);
             var eventData = new EventData(Encoding.UTF8.GetBytes(serialized));
 
-            await _exceptionHandler.RunActionAsync(() => 
-                Task.Run(() => 
-                    _eventHubClient.Send(eventData)
-                    )
-                );
+            _exceptionHandler.Run(() =>  _eventHubClient.Send(eventData));
+
+            await Task.FromResult<object>(null);
         }
     }
 }
