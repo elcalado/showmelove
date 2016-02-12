@@ -44,6 +44,9 @@ namespace ShowMeLove.Business.Managers
 
         public async Task<bool> InitializeAsync()
         {
+            // Initialize the configuration reader
+            await _configurationReader.InitializeAsync();
+
             // Initialize the idmanager
             var idManagerOk = await _userIdManager.InitializeAsync();
             if (!idManagerOk)

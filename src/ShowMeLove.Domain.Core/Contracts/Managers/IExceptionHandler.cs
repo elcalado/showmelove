@@ -5,8 +5,8 @@ namespace ShowMeLove.Domain.Core.Contracts.Managers
 {
     public interface IExceptionHandler
     {
-        Task RunActionAsync(Func<Task> unsafeAction);
+        void Run(Action unsafeAction);
 
-        Task<T> RunFunctionAsync<T>(Func<Task<T>> unsafeFunction);
+        T Run<T>(Func<T> unsafeFunction);
     }
 }

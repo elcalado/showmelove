@@ -62,7 +62,7 @@ namespace ShowMeLove.Data.Http
             {
                 yield return new ProfileResult
                 {
-                    Age = (int)face.FaceAttributes.Age,
+                    Age    = (int)face.FaceAttributes.Age,
                     Gender = face.FaceAttributes.Gender
                 };
             }
@@ -75,17 +75,17 @@ namespace ShowMeLove.Data.Http
             {
                 yield return new SentimentResult
                 {
-                    Anger = Math.Round((decimal)emotion.Scores.Anger * 1000,0),
-                    Contempt = Math.Round((decimal)emotion.Scores.Contempt * 1000,0),
-                    Disgust = Math.Round((decimal)emotion.Scores.Disgust * 1000,0),
-                    Fear = Math.Round((decimal)emotion.Scores.Fear * 1000,0),
+                    Anger     = Math.Round((decimal)emotion.Scores.Anger * 1000,0),
+                    Contempt  = Math.Round((decimal)emotion.Scores.Contempt * 1000,0),
+                    Disgust   = Math.Round((decimal)emotion.Scores.Disgust * 1000,0),
+                    Fear      = Math.Round((decimal)emotion.Scores.Fear * 1000,0),
                     Happiness = Math.Round((decimal)emotion.Scores.Happiness * 1000,0),
-                    Neutral = Math.Round((decimal)emotion.Scores.Neutral * 1000,0),
-                    Sadness = Math.Round((decimal)emotion.Scores.Sadness * 1000,0),
-                    Surprise = Math.Round((decimal)emotion.Scores.Surprise * 1000,0),
-                    Moment = DateTime.Now,
-                    Age = 22,
-                    Gender = "M"
+                    Neutral   = Math.Round((decimal)emotion.Scores.Neutral * 1000,0),
+                    Sadness   = Math.Round((decimal)emotion.Scores.Sadness * 1000,0),
+                    Surprise  = Math.Round((decimal)emotion.Scores.Surprise * 1000,0),
+                    Moment    = DateTime.Now,
+                    Age       = 22,
+                    Gender    = "M"
                 };
             }
         }

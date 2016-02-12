@@ -1,7 +1,6 @@
 ﻿using ShowMeLove.Domain.Core.Contracts.Managers;
 using ShowMeLove.Domain.Core.Contracts.Repositories;
 using System;
-using System.Threading.Tasks;
 
 namespace ShowMeLove.Business.Managers
 {
@@ -9,35 +8,35 @@ namespace ShowMeLove.Business.Managers
     {
         private readonly ILogger _logger;
 
-
         public ExceptionHandler(ILogger logger)
         {
             _logger = logger;
         }
 
 
-        public async Task RunActionAsync(Func<Task> unsafeAction)
+        public void Run(Action unsafeAction)
         {
             try
             {
-                await unsafeAction.Invoke();
+                unsafeAction.Invoke();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 _logger.LogException(ex);
             }
         }
 
 
-        public async Task<T> RunFunctionAsync<T>(Func<Task<T>> unsafeFunction)
+        public T Run<T>(Func<T> unsafeFunction)
         {
             try
             {
-                return await unsafeFunction.Invoke();
+                return unsafeFunction.Invoke();
             }
             catch(Exception ex)
             {
                 _logger.LogException(ex);
+
             }
             return default(T);
         }

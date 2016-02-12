@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using ShowMeLove.Domain.Core.Contracts.Managers;
+using ShowMeLove.Domain.Core.Contracts.Repositories;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -15,12 +16,20 @@ namespace ShowMeLove.Data.Identity
         static string authority   = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
 
         private AuthenticationResult _authenticationResult;
+        private readonly IConfigurationReader _configurationReader;
 
+        public UserIdManager(IConfigurationReader configurationReader)
+        {
+            _configurationReader = configurationReader;
+        }
         
         public async Task<bool> InitializeAsync()
         {
             var redirectUri = Windows.Security.Authentication.Web.WebAuthenticationBroker.GetCurrentApplicationCallbackUri();
             var authContext = new AuthenticationContext(authority);
+
+            var callBackUri = _configurationReader["AuthenticationCallbackUri"];
+
             Uri callbackUri = new Uri("http://showmylove.azurewebsites.net");
 
             var platformParameters = new PlatformParameters(PromptBehavior.Auto, false);
