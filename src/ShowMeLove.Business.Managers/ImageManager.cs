@@ -58,6 +58,9 @@ namespace ShowMeLove.Business.Managers
             // Initialize ImageCapturer
             await _imageCapture.InitializeAsync();
 
+            // Initialize message transmitter
+            await _messageTransmitter.InitializeAsync();
+
             // Start our timer
             InitializeAndStartTimer();
 

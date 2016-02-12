@@ -14,25 +14,26 @@ namespace ShowMeLove.Data.Http
     public class OxfordClient : IOxfordClient
     {
         private static HttpClient _httpClient = new HttpClient();
-        private const string OxfordClientSubscriptionKey = "5df0154542ef485abe98bd10347cecd0";
-        private const string OxfordFaceRecognitionKey = "69e72f4404934e9c877f3e1643ba66a4";
 
         private EmotionServiceClient _emotionServiceClient;
         private FaceServiceClient _faceServiceClient;
+
         private readonly IConfigurationReader _configurationReader;
 
 
         public OxfordClient(IConfigurationReader configurationReader)
         {
             _configurationReader = configurationReader;
-
         }
+
 
         public async Task InitializeAsync()
         {
+            var oxfordEmotionClientKey = _configurationReader["OxfordEmotionClientKey"];
+            var oxfordFaceClientKey    = _configurationReader["OxfordFaceClientKey"];
 
-            _emotionServiceClient = new EmotionServiceClient(_httpClient, OxfordClientSubscriptionKey);
-            _faceServiceClient    = new FaceServiceClient(OxfordFaceRecognitionKey);
+            _emotionServiceClient = new EmotionServiceClient(_httpClient, oxfordEmotionClientKey);
+            _faceServiceClient    = new FaceServiceClient(oxfordFaceClientKey);
 
             await Task.FromResult<object>(null);
         }

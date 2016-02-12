@@ -10,15 +10,29 @@ namespace ShowMyLove.Data.EventHub
 {
     public class MessageTransmitter : IMessageTransmitter
     {
-        private static string eventHubConnectionstring = "Endpoint=sb://showlovens.servicebus.windows.net/;SharedAccessKeyName=read;SharedAccessKey=uYFJwXmV0d0Ta8kDW03MLadfLAEkpUch0zP1EeqcfFg=";
-        private EventHubClient _eventHubClient;
+        private readonly IConfigurationReader _configurationReader;
         private readonly IExceptionHandler _exceptionHandler;
 
-        public MessageTransmitter(IExceptionHandler exceptionHandler)
+        private EventHubClient _eventHubClient;
+
+
+        public MessageTransmitter(IExceptionHandler exceptionHandler, IConfigurationReader configurationReader)
         {
             _exceptionHandler = exceptionHandler;
-            _eventHubClient = EventHubClient.CreateFromConnectionString(eventHubConnectionstring, "showlove");
+            _configurationReader = configurationReader;
         }
+
+
+        public async Task InitializeAsync()
+        {
+            var connectionString = _configurationReader["EventHubConnectionString"];
+            var eventHubPath     = _configurationReader["EventHubPath"];
+
+            _eventHubClient = EventHubClient.CreateFromConnectionString(connectionString, eventHubPath);
+
+            await Task.FromResult<object>(null);
+        }
+
 
         public async Task TransmitImageSavedAsync(SentimentResult result)
         {
