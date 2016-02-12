@@ -18,6 +18,7 @@ namespace ShowMeLove.Business.Managers
     {
         public event EventHandler<int> OnTimerTick;
 
+        private readonly IConfigurationReader _configurationReader;
         private readonly IUserIdManager _userIdManager;
         private readonly IImageCapture _imageCapture;
         private readonly IMessageTransmitter _messageTransmitter;
@@ -27,43 +28,37 @@ namespace ShowMeLove.Business.Managers
         private int _timeLeft;
 
         public ImageManager(
+            IConfigurationReader configurationReader,
             IUserIdManager userIdManager, 
             IImageCapture imageCapture, 
             IMessageTransmitter messageTransmitter,
             IOxfordClient oxfordClient)
         {
-            _userIdManager = userIdManager;
-            _imageCapture = imageCapture;
-            _messageTransmitter = messageTransmitter;
-            _oxfordClient = oxfordClient;
+            _configurationReader = configurationReader;
+            _userIdManager       = userIdManager;
+            _imageCapture        = imageCapture;
+            _messageTransmitter  = messageTransmitter;
+            _oxfordClient        = oxfordClient;
         }
 
 
         public async Task<bool> InitializeAsync()
         {
+            // Initialize the idmanager
             var idManagerOk = await _userIdManager.InitializeAsync();
+            if (!idManagerOk)
+                return false;
 
-            if (!idManagerOk) return false;
+            // Initialize the oxfordclient
+            await _oxfordClient.InitializeAsync();
 
-            _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromSeconds(1); // TOOD: Insert from configuration here
-            _timer.Tick += _timer_Tick;
-            _timer.Start();
+            // Start our timer
+            InitializeAndStartTimer();
 
+            // All done
             return true;
-        }
+        }      
 
-        private void _timer_Tick(object sender, object e)
-        {
-            if (OnTimerTick == null)
-                return;
-
-            _timeLeft -= 1;
-            if (_timeLeft < 0)
-                _timeLeft = 10;
-
-            OnTimerTick(this, _timeLeft);
-        }
 
         public async Task<WriteableBitmap> GetBitmapAsync()
         {
@@ -81,6 +76,7 @@ namespace ShowMeLove.Business.Managers
             var fileStream = await file.OpenStreamForReadAsync();
             return await _oxfordClient.GetSentimentsFromImageAsync(fileStream);
         }
+
 
         public async Task<IEnumerable<ProfileResult>> GetProfileAsync(WriteableBitmap bitmap)
         {
@@ -101,6 +97,28 @@ namespace ShowMeLove.Business.Managers
 
             foreach (var sentiment in sentiments)
                 await _messageTransmitter.TransmitImageSavedAsync(sentiment);
+        }
+
+
+        private void _timer_Tick(object sender, object e)
+        {
+            if (OnTimerTick == null)
+                return;
+
+            _timeLeft -= 1;
+            if (_timeLeft < 0)
+                _timeLeft = 10;
+
+            OnTimerTick(this, _timeLeft);
+        }
+
+
+        private void InitializeAndStartTimer()
+        {            
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1); // TOOD: Insert from configuration here
+            _timer.Tick += _timer_Tick;
+            _timer.Start();
         }
     }
 }

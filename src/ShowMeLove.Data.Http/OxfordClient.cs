@@ -17,13 +17,24 @@ namespace ShowMeLove.Data.Http
         private const string OxfordClientSubscriptionKey = "5df0154542ef485abe98bd10347cecd0";
         private const string OxfordFaceRecognitionKey = "69e72f4404934e9c877f3e1643ba66a4";
 
-        private readonly EmotionServiceClient _emotionServiceClient;
-        private readonly FaceServiceClient _faceServiceClient;
+        private EmotionServiceClient _emotionServiceClient;
+        private FaceServiceClient _faceServiceClient;
+        private readonly IConfigurationReader _configurationReader;
 
-        public OxfordClient()
+
+        public OxfordClient(IConfigurationReader configurationReader)
         {
+            _configurationReader = configurationReader;
+
+        }
+
+        public async Task InitializeAsync()
+        {
+
             _emotionServiceClient = new EmotionServiceClient(_httpClient, OxfordClientSubscriptionKey);
             _faceServiceClient    = new FaceServiceClient(OxfordFaceRecognitionKey);
+
+            await Task.FromResult<object>(null);
         }
 
 
@@ -33,14 +44,17 @@ namespace ShowMeLove.Data.Http
             return ConvertEmotionsToSentimentResults(emotions);
         }
 
+
         public async Task<IEnumerable<ProfileResult>> GetProfileFromImageAsync(Stream imageStream)
         {
             FaceAttributeType[] attributes = new FaceAttributeType[2];
-            attributes[0] = FaceAttributeType.Age;
-            attributes[1] = FaceAttributeType.Gender;
-            var profile = await _faceServiceClient.DetectAsync(imageStream, true, false, attributes );
+            attributes[0]                  = FaceAttributeType.Age;
+            attributes[1]                  = FaceAttributeType.Gender;
+            var profile                    = await _faceServiceClient.DetectAsync(imageStream, true, false, attributes );
+
             return ConvertProfileToProfileResults(profile);
         }
+
 
         private static IEnumerable<ProfileResult> ConvertProfileToProfileResults(Microsoft.ProjectOxford.Face.Contract.Face[] faces)
         {
@@ -53,6 +67,7 @@ namespace ShowMeLove.Data.Http
                 };
             }
         }
+
 
         private static IEnumerable<SentimentResult> ConvertEmotionsToSentimentResults(Emotion[] emotions)
         {
@@ -74,5 +89,6 @@ namespace ShowMeLove.Data.Http
                 };
             }
         }
+
     }
 }

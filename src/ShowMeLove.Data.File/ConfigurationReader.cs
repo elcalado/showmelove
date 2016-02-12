@@ -1,10 +1,5 @@
 ﻿using ShowMeLove.Domain.Core.Contracts.Repositories;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShowMeLove.Data.File
 {
