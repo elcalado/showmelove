@@ -11,8 +11,8 @@ namespace ShowMeLove.Data.Identity
         static string tenant      = "showmelove.onmicrosoft.com";
         static string clientId    = "b9852d74-58b3-440b-a097-548dfba43f74 ";
         static string aadInstance = "https://login.microsoftonline.com/{0}";
-        static string authority   = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
         static string resourceId  = "https://graph.windows.net/";
+        static string authority   = String.Format(CultureInfo.InvariantCulture, aadInstance, tenant);
 
         private AuthenticationResult _authenticationResult;
 
@@ -38,9 +38,9 @@ namespace ShowMeLove.Data.Identity
         public Task<string> GetAsync()
         {
             if (_authenticationResult == null)
-                return Task.FromResult<string>(string.Empty);
+                return Task.FromResult(string.Empty);
 
-            return Task.FromResult<string>(_authenticationResult.UserInfo.UniqueId);
+            return Task.FromResult(_authenticationResult.UserInfo.UniqueId);
         }
     }
 }

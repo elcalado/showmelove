@@ -7,5 +7,7 @@ namespace ShowMeLove.Domain.Core.Contracts.Repositories
     public interface IImageCapture
     {
         Task<WriteableBitmap> CaptureJpegImageAsync();
+
+        Task InitializeAsync();
     }
 }

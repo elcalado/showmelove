@@ -52,6 +52,9 @@ namespace ShowMeLove.Business.Managers
             // Initialize the oxfordclient
             await _oxfordClient.InitializeAsync();
 
+            // Initialize ImageCapturer
+            await _imageCapture.InitializeAsync();
+
             // Start our timer
             InitializeAndStartTimer();
 
