@@ -1,4 +1,6 @@
-﻿using ShowMeLove.ViewModels;
+﻿using ShowMeLove.Data.Fakes;
+using ShowMeLove.Domain.Core.Contracts.Repositories;
+using ShowMeLove.ViewModels;
 using StructureMap;
 
 namespace ShowMeLove.DependencyInversion
@@ -7,6 +9,10 @@ namespace ShowMeLove.DependencyInversion
     {
         public RuntimeRegistry()
         {
+            // Alternates and non-default conventions
+            For<ILogger>().Singleton().Use<FakeLogger>();
+
+            // Scan all assemblies using default conventions, ie: interface IImageHandler is implemented by class ImageHandler when both are found in the assemblies
             Scan(x =>
             {
 
@@ -25,8 +31,8 @@ namespace ShowMeLove.DependencyInversion
                 x.WithDefaultConventions();
             });
 
+            // Viewmodels
             AddType(typeof(MainPageViewModel), typeof(MainPageViewModel));
-
         }
     }
 }
